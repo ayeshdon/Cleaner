@@ -6,7 +6,7 @@ package android.cp.hseya.com.cleaner.bean;
 public class SuccessBean {
 
     private boolean isSuccess;
-    private  String message;
+    private String message;
 
     public String getMessage() {
         return message;

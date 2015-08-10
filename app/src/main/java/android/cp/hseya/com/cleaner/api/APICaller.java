@@ -1,8 +1,7 @@
 package android.cp.hseya.com.cleaner.api;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import android.cp.hseya.com.cleaner.MainApplication;
+import android.os.AsyncTask;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,247 +14,238 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.cp.hseya.com.cleaner.MainApplication;
-import android.os.AsyncTask;
-
-
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 
 public class APICaller extends AsyncTask<APICall, String, APIResult> {
 
-	private APICallback apiCallback = null;
-	private MainApplication application = null;
+    private APICallback apiCallback = null;
+    private MainApplication application = null;
 
 
-	public APICaller(APICallback apiCallback,MainApplication application) {
+    public APICaller(APICallback apiCallback, MainApplication application) {
 
-		this.apiCallback = apiCallback;
-		this.application = application;
+        this.apiCallback = apiCallback;
+        this.application = application;
 
-	}
+    }
 
-	@Override
-	protected APIResult doInBackground(APICall... params) {
+    @Override
+    protected APIResult doInBackground(APICall... params) {
 
 
-		APIResult  apiDataBean=new APIResult(); 
-		HttpResponse httpResponse = null;
-		InputStream is = null;
-		String token="";
-		APICall apiCall = null; 
+        APIResult apiDataBean = new APIResult();
+        HttpResponse httpResponse = null;
+        InputStream is = null;
+        String token = "";
+        APICall apiCall = null;
 
-		if (application!=null) {
+        if (application != null) {
 //			token=application.getLoginToken();
-		}
+        }
 
-		try {
+        try {
 
-			apiCall = params[0];
+            apiCall = params[0];
 
 
+            DefaultHttpClient httpClient = new DefaultHttpClient();
 
-			DefaultHttpClient httpClient = new DefaultHttpClient();
 
+            if (apiCall.getMethod() == APICall.APICallMethod.POST) {
 
 
-			if (apiCall.getMethod() == APICall.APICallMethod.POST) {
+                HttpPost httpPost = new HttpPost(apiCall.getUrl());
 
 
-				HttpPost httpPost = new HttpPost(apiCall.getUrl());
+                httpPost.setHeader("Content-Type", "application/json");
+                httpPost.setHeader("Accept", "application/json");
 
+                if (!token.equals("")) {
+                    httpPost.setHeader("authentication_token", token);
+                }
 
-				httpPost.setHeader("Content-Type", "application/json");
-				httpPost.setHeader("Accept", "application/json");
 
-				if (!token.equals("")) {
-					httpPost.setHeader("authentication_token", token);
-				}
+                if (apiCall.getJsonSend() != null) {
 
+                    StringEntity se = new StringEntity(apiCall.getJsonSend().toString());
 
-				if (apiCall.getJsonSend()!=null) { 
+                    httpPost.setEntity(se);
+                }
 
-					StringEntity se = new StringEntity(apiCall.getJsonSend().toString());
 
-					httpPost.setEntity(se);
-				}
+                httpResponse = httpClient.execute(httpPost);
 
 
-				httpResponse = httpClient.execute(httpPost);
+            } else if (apiCall.getMethod() == APICall.APICallMethod.GET) {
 
 
+                HttpGet httpGet = new HttpGet(apiCall.getUrl());
 
-			}else if(apiCall.getMethod() == APICall.APICallMethod.GET){
 
+                httpGet.setHeader("Content-Type", "application/json");
+                httpGet.setHeader("Accept", "application/json");
 
+                if (!token.equals("")) {
+                    httpGet.setHeader("authentication_token", token);
+                }
 
-				HttpGet httpGet = new HttpGet(apiCall.getUrl());
+                httpResponse = httpClient.execute(httpGet);
 
 
-				httpGet.setHeader("Content-Type", "application/json");
-				httpGet.setHeader("Accept", "application/json");
+            } else if (apiCall.getMethod() == APICall.APICallMethod.DELETE) {
+                //delete method http call
 
-				if (!token.equals("")) {
-					httpGet.setHeader("authentication_token", token);
-				}
 
-				httpResponse = httpClient.execute(httpGet);
+                HttpDelete httpDelete = new HttpDelete(apiCall.getUrl());
 
+                httpDelete.setHeader("Content-Type", "application/json");
+                httpDelete.setHeader("Accept", "application/json");
 
-			}else if(apiCall.getMethod() == APICall.APICallMethod.DELETE){
-				//delete method http call
+                if (!token.equals("")) {
+                    httpDelete.setHeader("authentication_token", token);
+                }
 
 
-				HttpDelete httpDelete = new HttpDelete(apiCall.getUrl());
+                httpResponse = httpClient.execute(httpDelete);
 
-				httpDelete.setHeader("Content-Type", "application/json");
-				httpDelete.setHeader("Accept", "application/json");
 
-				if (!token.equals("")) {
-					httpDelete.setHeader("authentication_token", token);
-				}
+            } else if (apiCall.getMethod() == APICall.APICallMethod.PUT) {
 
 
-				httpResponse = httpClient.execute(httpDelete);
+                HttpPut httpPut = new HttpPut(apiCall.getUrl());
 
+                httpPut.setHeader("Content-Type", "application/json");
+                httpPut.setHeader("Accept", "application/json");
 
-			} else if(apiCall.getMethod() == APICall.APICallMethod.PUT){
+                if (!token.equals("")) {
+                    httpPut.setHeader("authentication_token", token);
+                }
 
+                if (apiCall.getJsonSend() != null) {
 
+                    StringEntity se = new StringEntity(apiCall.getJsonSend().toString());
+                    httpPut.setEntity(se);
+                }
 
-				HttpPut httpPut = new HttpPut(apiCall.getUrl());
+                httpResponse = httpClient.execute(httpPut);
 
-				httpPut.setHeader("Content-Type", "application/json");
-				httpPut.setHeader("Accept", "application/json");
+            }
 
-				if (!token.equals("")) {
-					httpPut.setHeader("authentication_token", token);
-				}
+            HttpEntity httpEntity = httpResponse.getEntity();
 
-				if (apiCall.getJsonSend()!=null) { 
+            apiDataBean.setStatusCode(httpResponse.getStatusLine().getStatusCode());
 
-					StringEntity se = new StringEntity(apiCall.getJsonSend().toString());
-					httpPut.setEntity(se);
-				}
+            is = httpEntity.getContent();
 
-				httpResponse = httpClient.execute(httpPut);
+            if (apiCall.isJsonArray()) {
+                apiDataBean.setJsonArray(getResultJsonArray(is));
+            } else {
+                apiDataBean.setResultJson(getResultJsonObject(is));
+            }
 
-			}
 
-			HttpEntity httpEntity = httpResponse.getEntity();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (apiCall.isJsonArray()) {
+                apiDataBean.setJsonArray(null);
+            } else {
+                apiDataBean.setResultJson(null);
+            }
 
-			apiDataBean.setStatusCode(httpResponse.getStatusLine().getStatusCode());
+        }
 
-			is = httpEntity.getContent();
+        return apiDataBean;
 
-			if (apiCall.isJsonArray()) {
-				apiDataBean.setJsonArray(getResultJsonArray(is));
-			}else{
-				apiDataBean.setResultJson(getResultJsonObject(is));
-			}
 
+    }
 
-		}catch(Exception e){
-			e.printStackTrace();
-			if (apiCall.isJsonArray()) {
-				apiDataBean.setJsonArray(null);
-			}else{
-				apiDataBean.setResultJson(null);
-			}
 
-		}
+    @Override
+    protected void onPostExecute(APIResult result) {
+        super.onPostExecute(result);
 
-		return apiDataBean;
+        if (result != null) {
 
+            if (apiCallback != null) {
 
+                apiCallback.onAPICallComplete(result);
+            }
+        }
+    }
 
-	}
 
+    /*
+     * get JSONArray from API response
+     */
+    private JSONArray getResultJsonArray(InputStream is) {
 
+        JSONArray jsonArray = null;
+        String json = "";
 
 
-	@Override
-	protected void onPostExecute(APIResult result) {
-		super.onPostExecute(result);
+        try {
 
-		if (result != null) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
 
-			if (apiCallback != null) {
+            StringBuilder sb = new StringBuilder();
+            String line = null;
 
-				apiCallback.onAPICallComplete(result);
-			}
-		}
-	}
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
 
+            is.close();
+            json = sb.toString();
+            jsonArray = new JSONArray(json);
 
-	/*
-	 * get JSONArray from API response 
-	 */
-	private JSONArray getResultJsonArray(InputStream is){
+            return jsonArray;
 
-		JSONArray jsonArray = null;
-		String json = "";
+        } catch (Exception e) {
 
+            e.printStackTrace();
+            return null;
+        }
 
-		try {
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+    }
 
-			StringBuilder sb = new StringBuilder();
-			String line = null;
 
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
+    /*
+     * get json object form API response
+     */
+    private JSONObject getResultJsonObject(InputStream is) {
 
-			is.close();
-			json = sb.toString();
-			jsonArray=new JSONArray(json);
+        JSONObject jObj = null;
+        String json = "";
 
-			return jsonArray;
+        try {
 
-		} catch (Exception e) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
 
-			e.printStackTrace();
-			return null;
-		}
+            StringBuilder sb = new StringBuilder();
+            String line = null;
 
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
 
-	}
+            is.close();
+            json = sb.toString();
 
+            jObj = null;
+            jObj = new JSONObject(json);
 
-	/*
-	 * get json object form API response 
-	 */
-	private JSONObject getResultJsonObject(InputStream is ){
+            return jObj;
 
-		JSONObject jObj = null;
-		String json = "";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
-		try {
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
-
-			StringBuilder sb = new StringBuilder();
-			String line = null;
-
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
-
-			is.close();
-			json = sb.toString();
-
-			jObj=null;
-			jObj = new JSONObject(json);		
-
-			return jObj;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-
-	}
+    }
 
 }

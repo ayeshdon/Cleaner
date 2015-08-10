@@ -5,7 +5,7 @@ package android.cp.hseya.com.cleaner.bean;
  */
 public class LoginResponseBean {
 
-    private String  name;
+    private String name;
 
     public String getName() {
         return name;

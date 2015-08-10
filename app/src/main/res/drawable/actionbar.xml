@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Background -->
+    <item>
+        <shape>
+            <solid android:color="@color/btn_singup_bg" />
+
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+
+</layer-list>

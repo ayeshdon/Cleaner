@@ -2,6 +2,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="android.cp.hseya.com.cleaner.activity.DashBoardActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:icon="@drawable/icn_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/action_singout"
+        android:orderInCategory="100"
+        android:icon="@drawable/icn_logout"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
 </menu>
+

@@ -17,13 +17,8 @@ import android.cp.hseya.com.cleaner.utils.InternetConnection;
 import android.cp.hseya.com.cleaner.utils.Settings;
 import android.cp.hseya.com.cleaner.utils.Utils;
 import android.cp.hseya.com.cleaner.utils.Validator;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,7 +28,7 @@ import org.json.JSONObject;
 
 public class ActivityMain extends Activity implements View.OnClickListener, APICallback {
 
-    private EditText loginEmailEditText,loginPwEditText;
+    private EditText loginEmailEditText, loginPwEditText;
     private Button loginButton;
     private ProgressDialog progressDialog;
 
@@ -42,13 +37,13 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
         super.onCreate(savedInstanceState);
         try {
 
-            Settings settings  = new Settings(this);
+            Settings settings = new Settings(this);
 
-            if (settings.getLoginAlready()){
+            if (settings.getLoginAlready()) {
 
                 callDashboard();
 
-            }else {
+            } else {
 
                 setContentView(R.layout.activity_main);
 
@@ -57,37 +52,36 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, getResources().getString(R.string.exception), Toast.LENGTH_LONG).show();
         }
     }
 
 
-
-    private void UIInitalize() throws  Exception{
+    private void UIInitalize() throws Exception {
         try {
-            loginEmailEditText = (EditText)findViewById(R.id.loginEmailEditText);
-            loginPwEditText    = (EditText)findViewById(R.id.loginPwEditText);
+            loginEmailEditText = (EditText) findViewById(R.id.loginEmailEditText);
+            loginPwEditText = (EditText) findViewById(R.id.loginPwEditText);
 
-            loginButton = (Button)findViewById(R.id.loginButton);
+            loginButton = (Button) findViewById(R.id.loginButton);
 
             loginButton.setOnClickListener(this);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
     }
 
 
-    private void callDashboard() throws  Exception{
+    private void callDashboard() throws Exception {
         try {
 
             Intent callDashoard = new Intent(this, DashBoardActivity.class);
             startActivity(callDashoard);
             finish();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -97,35 +91,34 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
     public void onClick(View view) {
         try {
 
-            switch (view.getId()){
-                case R.id.loginButton:{
+            switch (view.getId()) {
+                case R.id.loginButton: {
 
-                    if(InternetConnection.getInstance(this).isConnectingToInternet()){
+                    if (InternetConnection.getInstance(this).isConnectingToInternet()) {
 
                         String email = loginEmailEditText.getText().toString();
-                        String pw    = loginPwEditText.getText().toString();
+                        String pw = loginPwEditText.getText().toString();
 
-                        if(email.isEmpty()){
-                            Toast.makeText(this,getResources().getString(R.string.email_empty),Toast.LENGTH_LONG).show();
+                        if (email.isEmpty()) {
+                            Toast.makeText(this, getResources().getString(R.string.email_empty), Toast.LENGTH_LONG).show();
 
-                        }else if (!Validator.isValidEmail(email)){
-                            Toast.makeText(this,getResources().getString(R.string.email_invalid),Toast.LENGTH_LONG).show();
+                        } else if (!Validator.isValidEmail(email)) {
+                            Toast.makeText(this, getResources().getString(R.string.email_invalid), Toast.LENGTH_LONG).show();
 
-                        }else if(pw.isEmpty()){
-                            Toast.makeText(this,getResources().getString(R.string.pw_empty),Toast.LENGTH_LONG).show();
+                        } else if (pw.isEmpty()) {
+                            Toast.makeText(this, getResources().getString(R.string.pw_empty), Toast.LENGTH_LONG).show();
 
-                        }else{
+                        } else {
                     /*Valid request*/
-
 
 
                             String md5Pw = Utils.stringToMD5(pw);
 
-                            JSONObject loginJson = JsonParser.getInstance().getLoginJson(email,md5Pw);
+                            JSONObject loginJson = JsonParser.getInstance().getLoginJson(email, md5Pw);
 
                             showProgress();
-                            APICaller apiCaller = new APICaller(this,null);
-                            APICall apiCall     = new APICall(API.USER_LOGIN, APICall.APICallMethod.POST,this);
+                            APICaller apiCaller = new APICaller(this, null);
+                            APICall apiCall = new APICall(API.USER_LOGIN, APICall.APICallMethod.POST, this);
 
                             apiCall.setJsonSend(loginJson);
                             apiCaller.execute(apiCall);
@@ -134,35 +127,34 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
                         }
 
 
-                    }else{
+                    } else {
 
-                        Toast.makeText(this,getResources().getString(R.string.no_internet),Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
 
                     }
 
                     break;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
 
-
-    private void showProgress(){
+    private void showProgress() {
         try {
 
             progressDialog = ProgressDialog.show(this, "", "Please wait...");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void hideProgress(){
+    private void hideProgress() {
         if (progressDialog != null)
             progressDialog.dismiss();
     }
@@ -174,36 +166,36 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
         try {
 
             System.out.println(" ");
-            System.out.println(" apiResult : "+apiResult.getResultJson().toString());
+            System.out.println(" apiResult : " + apiResult.getResultJson().toString());
             System.out.println(" ");
 
             JSONObject resultJson = apiResult.getResultJson();
 
             JsonStatusBean statusBean = JsonParser.getInstance().getJsonStatus(resultJson);
 
-            if (statusBean.getStatusCode() == 200){
+            if (statusBean.getStatusCode() == 200) {
                 /*Success response*/
                 SuccessBean successBean = JsonParser.getInstance().getJsonSuccess(resultJson);
 
-                if (successBean.isSuccess()){
+                if (successBean.isSuccess()) {
 
-                    LoginResponseBean bean  = JsonParser.getInstance().getJsonloginResponse(resultJson);
+                    LoginResponseBean bean = JsonParser.getInstance().getJsonloginResponse(resultJson);
 
-                    Settings settings  = new Settings(this);
+                    Settings settings = new Settings(this);
                     settings.setLoginAlready(true);
                     settings.setUserName(bean.getName());
 
                     callDashboard();
 
-                }else{
-                    Toast.makeText(this,successBean.getMessage(),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, successBean.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
-            }else{
-                Toast.makeText(this,statusBean.getMessage(),Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, statusBean.getMessage(), Toast.LENGTH_LONG).show();
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

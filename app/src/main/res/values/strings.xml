@@ -23,4 +23,18 @@
     <color name="windowBackground">#B0BEC5</color>
     <color name="colorAccent">#000000</color>
     <string name="title_activity_dash_board">DashBoardActivity</string>
+    <string name="hi">HI</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="complaint">Complaint</string>
+    <string name="inspection">Inspection</string>
+    <string name="dialogs">Dialogs</string>
+    <string name="notifications">Notifications</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="title_activity_inspection">InspectionActivity</string>
+    <string name="title_activity_day">DayActivity</string>
+    <string name="title_activity_week">WeekActivity</string>
+    <string name="title_activity_monthly">MonthlyActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

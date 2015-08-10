@@ -12,9 +12,9 @@ public class Settings {
     private Context context;
 
 
-    public Settings(Context context){
+    public Settings(Context context) {
 
-        this.context=context;
+        this.context = context;
 
     }
 
@@ -25,31 +25,31 @@ public class Settings {
         return context.getSharedPreferences(PREF_NAME, 0);
     }
 
+    /*
+     * get application login user name
+     */
+    public String getUserName() {
+        return getPref().getString("user_name", "");
+    }
 
     /*
-	 * set application login user name
+     * set application login user name
 	 */
     public void setUserName(String value) {
         getPref().edit().putString("user_name", value).commit();
     }
 
     /*
-     * get application login user name
+     * get application login flag
      */
-    public String getUserName() {
-        return  getPref().getString("user_name", "");
+    public boolean getLoginAlready() {
+        return getPref().getBoolean("is_login", false);
     }
+
     /*
 	 * set application login flag
 	 */
     public void setLoginAlready(boolean value) {
         getPref().edit().putBoolean("is_login", value).commit();
-    }
-
-    /*
-     * get application login flag
-     */
-    public boolean getLoginAlready() {
-        return  getPref().getBoolean("is_login",false);
     }
 }

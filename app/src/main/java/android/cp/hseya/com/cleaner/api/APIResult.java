@@ -1,89 +1,88 @@
 package android.cp.hseya.com.cleaner.api;
 
-import java.io.InputStream;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+
 public class APIResult {
-	
-	private String responseBody;
-	private int statusCode;
-	private InputStream inputStream;
-	private JSONArray jsonArray;
-	private JSONObject resultJson;
-	
-	
-	/*
-	 * get API Responce body
-	 */
-	public String getResponseBody() {
-		return responseBody;
-	}
 
-	/*
-	 * set API responce body
-	 */
-	public void setResponseBody(String responseBody) {
-		this.responseBody = responseBody;
-	}
+    private String responseBody;
+    private int statusCode;
+    private InputStream inputStream;
+    private JSONArray jsonArray;
+    private JSONObject resultJson;
 
-	/*
-	 * get API responce status code
-	 */
-	public int getStatusCode() {
-		return statusCode;
-	}
 
-	/*
-	 * set API responce status code
-	 */
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
-	}
+    /*
+     * get API Responce body
+     */
+    public String getResponseBody() {
+        return responseBody;
+    }
 
-	/*
-	 * get API responce InputStream
-	 */
-	public InputStream getInputStream() {
-		return inputStream;
-	}
+    /*
+     * set API responce body
+     */
+    public void setResponseBody(String responseBody) {
+        this.responseBody = responseBody;
+    }
 
-	/*
-	 * set API responce InputStream
-	 */
-	public void setInputStream(InputStream inputStream) {
-		this.inputStream = inputStream;
-	}
+    /*
+     * get API responce status code
+     */
+    public int getStatusCode() {
+        return statusCode;
+    }
 
-	/*
-	 * get responce json array
-	 */
-	public JSONArray getJsonArray() {
-		return jsonArray;
-	}
+    /*
+     * set API responce status code
+     */
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 
-	/*
-	 * set responce json array
-	 */
-	public void setJsonArray(JSONArray jsonArray) {
-		this.jsonArray = jsonArray;
-	}
+    /*
+     * get API responce InputStream
+     */
+    public InputStream getInputStream() {
+        return inputStream;
+    }
 
-	/*
-	 * get responce json object
-	 */
-	public JSONObject getResultJson() {
-		return resultJson;
-	}
+    /*
+     * set API responce InputStream
+     */
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+    }
 
-	/*
-	 * set responce json object
-	 */
-	public void setResultJson(JSONObject resultJson) {
-		this.resultJson = resultJson;
-	}
-	
-	
+    /*
+     * get responce json array
+     */
+    public JSONArray getJsonArray() {
+        return jsonArray;
+    }
+
+    /*
+     * set responce json array
+     */
+    public void setJsonArray(JSONArray jsonArray) {
+        this.jsonArray = jsonArray;
+    }
+
+    /*
+     * get responce json object
+     */
+    public JSONObject getResultJson() {
+        return resultJson;
+    }
+
+    /*
+     * set responce json object
+     */
+    public void setResultJson(JSONObject resultJson) {
+        this.resultJson = resultJson;
+    }
+
 
 }
