@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Cleaner</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Log In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="email_empty">Please enter email address</string>
+    <string name="pw_empty">Please enter password</string>
+    <string name="email_invalid">Please enter valid email address</string>
+    <string name="exception">Something went wrong. Please try again</string>
+    <string name="no_internet">Please verify your Internet connection and try again.</string>
+
+
+    <color name="btn_singup_bg">#03a9f5</color>
+    <color name="btn_select">#EE6C80</color>
+    <color name="btn_disagree_bg">#E45C2A</color>
+    <color name="bg_gray">#CCCCCC</color>
+
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="windowBackground">#B0BEC5</color>
+    <color name="colorAccent">#000000</color>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+</resources>

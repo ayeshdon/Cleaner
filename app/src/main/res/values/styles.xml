@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+            <!-- Customize your theme here. -->
+
+
+            <item name="colorPrimary">@color/btn_singup_bg</item>
+            <item name="colorPrimaryDark">@color/btn_singup_bg</item>
+            <item name="android:colorBackground">@android:color/white</item>
+            <item name="colorAccent">@android:color/white</item>
+
+    </style>
+
+</resources>
