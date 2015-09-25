@@ -2,6 +2,7 @@ package android.cp.hseya.com.cleaner.api;
 
 import android.cp.hseya.com.cleaner.MainApplication;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -42,20 +43,21 @@ public class APICaller extends AsyncTask<APICall, String, APIResult> {
         String token = "";
         APICall apiCall = null;
 
-        if (application != null) {
-//			token=application.getLoginToken();
-        }
+
 
         try {
 
             apiCall = params[0];
 
+            Log.e("URL SEND  ",apiCall.getUrl());
+
+            apiDataBean.setURL(apiCall.getUrl());
 
             DefaultHttpClient httpClient = new DefaultHttpClient();
 
 
             if (apiCall.getMethod() == APICall.APICallMethod.POST) {
-
+                Log.e("API_METHOD","POST");
 
                 HttpPost httpPost = new HttpPost(apiCall.getUrl());
 
@@ -234,6 +236,9 @@ public class APICaller extends AsyncTask<APICall, String, APIResult> {
 
             is.close();
             json = sb.toString();
+
+
+            Log.e("API RESULT", json);
 
             jObj = null;
             jObj = new JSONObject(json);

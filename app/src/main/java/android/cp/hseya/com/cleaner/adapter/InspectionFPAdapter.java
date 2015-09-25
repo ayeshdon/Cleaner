@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentManager;
  */
 public class InspectionFPAdapter extends android.support.v4.app.FragmentPagerAdapter{
 
-    final int PAGE_COUNT = 2;
+    final int PAGE_COUNT = 3;
 
     public InspectionFPAdapter(FragmentManager fm) {
         super(fm);

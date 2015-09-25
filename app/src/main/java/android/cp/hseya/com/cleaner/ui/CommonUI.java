@@ -7,6 +7,7 @@ import android.cp.hseya.com.cleaner.R;
 import android.cp.hseya.com.cleaner.activity.InspectionActivity;
 import android.cp.hseya.com.cleaner.listener.ActionbarTitleClickListener;
 import android.support.v7.app.ActionBar;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -131,7 +132,67 @@ public class CommonUI  {
 			});
 			
 			
-			actionBarTextView.setText(title);
+			actionBarTextView.setText(Html.fromHtml(title));
+
+
+
+
+
+
+			customActionBar.setCustomView(v);
+
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	public void setCommonActionBarWithSubtitle(ActionBar customActionBar,Context context,boolean isHomeNavEnable,
+			boolean isShowHeaderImg,String title,String subtitle,boolean isHomeUp,final ActionbarTitleClickListener titleClickListener) throws Exception {
+		try {
+
+			customActionBar.setDisplayHomeAsUpEnabled(false);
+			customActionBar.setDisplayShowCustomEnabled(true);
+			customActionBar.setDisplayUseLogoEnabled(true);
+			customActionBar.setDisplayShowTitleEnabled(true);
+
+			if (isHomeNavEnable) {
+
+				if (isHomeUp) {
+
+					customActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM |
+							ActionBar.DISPLAY_HOME_AS_UP|ActionBar.DISPLAY_SHOW_HOME);
+
+
+				}else{
+					customActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM |
+							ActionBar.DISPLAY_SHOW_HOME);
+				}
+			}else{
+				customActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
+			}
+
+
+			customActionBar.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.actionbar));
+
+
+
+			LayoutInflater inflator = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View v = inflator.inflate(R.layout.actionbar_subtitle_layout, null);
+
+			TextView  actionBarSubTextView  = (TextView)  v.findViewById(R.id.actionBarSubTextView);
+			TextView  actionBarSubTitleTextView  = (TextView)  v.findViewById(R.id.actionBarSubTitleTextView);
+
+			actionBarSubTextView.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+
+					titleClickListener.onTitleClick();
+				}
+			});
+
+
+			actionBarSubTextView.setText(Html.fromHtml(title));
+			actionBarSubTitleTextView.setText(Html.fromHtml(subtitle));
 
 
 

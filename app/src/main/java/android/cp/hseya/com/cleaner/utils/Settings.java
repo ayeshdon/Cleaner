@@ -33,10 +33,38 @@ public class Settings {
     }
 
     /*
-     * set application login user name
+     * set application login user email
 	 */
     public void setUserName(String value) {
         getPref().edit().putString("user_name", value).commit();
+    }
+    /*
+     * get application login user email
+     */
+    public String getUserEmail() {
+        return getPref().getString("user_email", "");
+    }
+
+    /*
+     * set application login user name
+	 */
+    public void setUserEmail(String value) {
+        getPref().edit().putString("user_email", value).commit();
+    }
+
+
+    /*
+     * get application login user id
+     */
+    public String getUserID() {
+        return getPref().getString("user_id", "");
+    }
+
+    /*
+     * set application login user id
+	 */
+    public void setUserID(String value) {
+        getPref().edit().putString("user_id", value).commit();
     }
 
     /*

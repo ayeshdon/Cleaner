@@ -1,8 +1,10 @@
 package android.cp.hseya.com.cleaner.activity;
 
 import android.content.Intent;
+import android.cp.hseya.com.cleaner.MainApplication;
 import android.cp.hseya.com.cleaner.adapter.InspectionFPAdapter;
 import android.cp.hseya.com.cleaner.listener.ActionbarTitleClickListener;
+import android.cp.hseya.com.cleaner.listener.InspectionFragmentActionListener;
 import android.cp.hseya.com.cleaner.ui.CommonUI;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,9 +19,10 @@ import android.cp.hseya.com.cleaner.R;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-public class InspectionActivity extends ActionBarActivity implements ActionbarTitleClickListener {
+public class InspectionActivity extends ActionBarActivity implements ActionbarTitleClickListener,InspectionFragmentActionListener {
 
     private ViewPager mPager;
+    private MainApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,11 @@ public class InspectionActivity extends ActionBarActivity implements ActionbarTi
 
         try {
 
+            application = (MainApplication)getApplication();
 
+            application.fragmentActionListener = this;
 
-      final ActionBar customActionBar =  getSupportActionBar();
+            final ActionBar customActionBar =  getSupportActionBar();
 
 
             customActionBar.hide();
@@ -47,7 +52,6 @@ public class InspectionActivity extends ActionBarActivity implements ActionbarTi
             setContentView(R.layout.activity_inspection);
 
 
-            //--------------------
 
             mPager = (ViewPager) findViewById(R.id.pager);
 
@@ -57,6 +61,7 @@ public class InspectionActivity extends ActionBarActivity implements ActionbarTi
                 @Override
                 public void onPageSelected(int position) {
                     super.onPageSelected(position);
+
                     customActionBar.setSelectedNavigationItem(position);
                 }
             };
@@ -83,6 +88,8 @@ public class InspectionActivity extends ActionBarActivity implements ActionbarTi
 
                 @Override
                 public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+
                     mPager.setCurrentItem(tab.getPosition());
                 }
 
@@ -111,12 +118,6 @@ public class InspectionActivity extends ActionBarActivity implements ActionbarTi
                     .setTabListener(tabListener);
 
             customActionBar.addTab(tab);
-
-
-            //--------------------
-
-
-
 
 
 
@@ -166,5 +167,32 @@ public class InspectionActivity extends ActionBarActivity implements ActionbarTi
     @Override
     public void onTitleClick() {
         callBack();
+    }
+
+    @Override
+    public void onFragmentMoverClick(int fragment, int side) {
+        try {
+
+            if ((fragment == 1) && (side == 2)){
+                mPager.setCurrentItem(1);
+
+            }else if ((fragment == 2) && (side == 1)) {
+                mPager.setCurrentItem(0);
+
+            }else if ((fragment == 2) && (side == 2)) {
+                mPager.setCurrentItem(2);
+
+            }else if ((fragment == 3) && (side == 1)) {
+                mPager.setCurrentItem(1);
+
+            }else if ((fragment == 3) && (side == 2)) {
+                mPager.setCurrentItem(0);
+
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -50,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
-                android:text="New Text"
                 android:paddingLeft="5dp"
                 android:textSize="20sp"
                 android:id="@+id/profileNameTextView" />
@@ -103,13 +102,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:text="0"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
                 android:padding="5dp"
                 android:background="@drawable/textbox"
                 android:id="@+id/textView5" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/gray"></LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -140,15 +147,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:text="0"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
                 android:padding="5dp"
                 android:background="@drawable/textbox"
-                android:id="@+id/textView51" />
+                android:id="@+id/inspectionCountTextView" />
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/gray"></LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -178,13 +193,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:text="0"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
                 android:padding="5dp"
                 android:background="@drawable/textbox"
                 android:id="@+id/textView52" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/gray"></LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -214,7 +237,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:text="0"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
                 android:padding="5dp"

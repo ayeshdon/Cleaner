@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -31,6 +32,8 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
     private EditText loginEmailEditText, loginPwEditText;
     private Button loginButton;
     private ProgressDialog progressDialog;
+    private String email ;
+    private TextView versionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,15 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
     private void UIInitalize() throws Exception {
         try {
             loginEmailEditText = (EditText) findViewById(R.id.loginEmailEditText);
-            loginPwEditText = (EditText) findViewById(R.id.loginPwEditText);
+            loginPwEditText    = (EditText) findViewById(R.id.loginPwEditText);
+
+
+            versionTextView = (TextView) findViewById(R.id.versionTextView);
+            String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            versionTextView.setText("V1.13");
+
+
+
 
             loginButton = (Button) findViewById(R.id.loginButton);
 
@@ -96,7 +107,7 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
 
                     if (InternetConnection.getInstance(this).isConnectingToInternet()) {
 
-                        String email = loginEmailEditText.getText().toString();
+                         email = loginEmailEditText.getText().toString();
                         String pw = loginPwEditText.getText().toString();
 
                         if (email.isEmpty()) {
@@ -165,9 +176,6 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
 
         try {
 
-            System.out.println(" ");
-            System.out.println(" apiResult : " + apiResult.getResultJson().toString());
-            System.out.println(" ");
 
             JSONObject resultJson = apiResult.getResultJson();
 
@@ -182,8 +190,11 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
                     LoginResponseBean bean = JsonParser.getInstance().getJsonloginResponse(resultJson);
 
                     Settings settings = new Settings(this);
+
+                    settings.setUserEmail(email);
                     settings.setLoginAlready(true);
                     settings.setUserName(bean.getName());
+                    settings.setUserID(bean.getId());
 
                     callDashboard();
 

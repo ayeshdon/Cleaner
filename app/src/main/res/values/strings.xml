@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cleaner</string>
+    <string name="app_name">CLIENT KEY</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -11,12 +11,24 @@
     <string name="email_invalid">Please enter valid email address</string>
     <string name="exception">Something went wrong. Please try again</string>
     <string name="no_internet">Please verify your Internet connection and try again.</string>
+    <string name="ops">Ops..</string>
+    <string name="comment_empty">Please enter comment</string>
+    <string name="rating_empty">Please enter rating</string>
+    <string name="no_data_found">No results were found</string>
+    <string name="postpone_date_empty">Please Enter Postpone Date</string>
+    <string name="postpone_reason_empty">Please Enter Postpone Reason</string>
+    <string name="update_successfully">Successfully Updated</string>
+    <string name="success">Success</string>
 
 
     <color name="btn_singup_bg">#03a9f5</color>
+    <color name="yellow_bg">#fffe8d</color>
+    <color name="gray_text">#7f7f7f</color>
     <color name="btn_select">#EE6C80</color>
     <color name="btn_disagree_bg">#E45C2A</color>
     <color name="bg_gray">#CCCCCC</color>
+    <color name="gray">#ededed</color>
+    <color name="text_light_gray">#666666</color>
 
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#263238</color>
@@ -37,4 +49,22 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_inspection_item">InspectionItemActivity</string>
+    <string name="more_info">More Info</string>
+    <string name="title_activity_sub_task">SubTaskActivity</string>
+    <string name="weekly_work">Weekly Work</string>
+    <string name="title_activity_sub_task_details">SubTaskDetailsActivity</string>
+    <string name="rating">Rating</string>
+    <string name="comment">Comment</string>
+    <string name="tap_to_start_typing">Tap to start typing</string>
+    <string name="add_attachment">Add Attachment</string>
+    <string name="save_n_end"><![CDATA[Save & End]]></string>
+    <string name="resume">Resume</string>
+    <string name="title_activity_postpone">PostponeActivity</string>
+    <string name="date_attended">Date Attended</string>
+    <string name="postponed_date">Postponed Date</string>
+    <string name="tap_to_add">Tap to Add</string>
+    <string name="tap_to_select">Tap to Select</string>
+    <string name="reason">Reason</string>
+    <string name="save">Save</string>
 </resources>

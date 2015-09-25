@@ -12,6 +12,7 @@ public class APIResult {
     private InputStream inputStream;
     private JSONArray jsonArray;
     private JSONObject resultJson;
+    private String URL;
 
 
     /*
@@ -84,5 +85,11 @@ public class APIResult {
         this.resultJson = resultJson;
     }
 
+    public String getURL() {
+        return URL;
+    }
 
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
 }

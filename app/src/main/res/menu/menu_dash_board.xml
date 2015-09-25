@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:icon="@drawable/icn_settings"
+        android:icon="@drawable/settings"
         android:title="@string/action_settings"
         app:showAsAction="always" />
 
@@ -15,7 +15,7 @@
     <item
         android:id="@+id/action_singout"
         android:orderInCategory="100"
-        android:icon="@drawable/icn_logout"
+        android:icon="@drawable/logout"
         android:title="@string/action_settings"
         app:showAsAction="always" />
 

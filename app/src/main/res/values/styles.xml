@@ -8,6 +8,7 @@
         <item name="colorPrimaryDark">@color/btn_singup_bg</item>
         <item name="android:colorBackground">@android:color/white</item>
         <item name="colorAccent">@android:color/white</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowMenuButton</item>
 
     </style>
 
@@ -18,8 +19,17 @@
         <item name="colorPrimary">@color/btn_singup_bg</item>
         <item name="colorPrimaryDark">@color/btn_singup_bg</item>
         <item name="android:colorBackground">@android:color/white</item>
-        <item name="colorAccent">@android:color/white</item>
+        <item name="colorAccent">@color/yellow_bg</item>
 
+    </style>
+
+    <style name="OverflowMenuButton" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+    <!--<style name="OverflowMenuButton" parent="@android:style/Widget.Holo.ActionButton.Overflow">-->
+        <item name="android:src">@drawable/more</item>
+    </style>
+
+    <style name="customer_rating_bar_style" prarent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_bar_style</item>
     </style>
 
 </resources>

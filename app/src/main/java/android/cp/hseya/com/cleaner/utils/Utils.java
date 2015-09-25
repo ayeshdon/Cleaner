@@ -1,6 +1,9 @@
 package android.cp.hseya.com.cleaner.utils;
 
 import java.security.MessageDigest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by ayesh on 5/19/2015.
@@ -32,5 +35,19 @@ public class Utils {
         }
         return digest;
 
+    }
+
+
+    public static String  getCurrentDateOnly()throws  Exception{
+        try {
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+
+            return dateFormat.format(date);
+
+        }catch (Exception e){
+            throw  e;
+        }
     }
 }
