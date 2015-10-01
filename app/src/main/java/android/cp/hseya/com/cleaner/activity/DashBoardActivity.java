@@ -14,6 +14,7 @@ import android.cp.hseya.com.cleaner.api.APIResult;
 import android.cp.hseya.com.cleaner.bean.JobSpecBean;
 import android.cp.hseya.com.cleaner.json.JsonParser;
 import android.cp.hseya.com.cleaner.ui.CircularImageView;
+import android.cp.hseya.com.cleaner.utils.Const;
 import android.cp.hseya.com.cleaner.utils.InternetConnection;
 import android.cp.hseya.com.cleaner.utils.Settings;
 import android.os.Bundle;
@@ -287,29 +288,38 @@ public class DashBoardActivity extends ActionBarActivity implements View.OnClick
                 showProgress();
 
                 APICaller apiCaller = new APICaller(this, null);
-                APICall apiCall = new APICall(API.JOB_PENDING_SPECS+application.employeeID,
+                APICall apiCall = new APICall(API.JOB_PENDING_SPECS+application.employeeID+"/"+ Const.DAY_FRQ,
                         APICall.APICallMethod.GET, this);
                 apiCall.setJsonSend(null);
                 apiCaller.execute(apiCall);
 
-            }else if(apiResult.getURL().equals(API.JOB_PENDING_SPECS+application.employeeID)){
+            }else if(apiResult.getURL().equals(API.JOB_PENDING_SPECS+application.employeeID+"/"+ Const.DAY_FRQ)){
 
 
-                application.jobSpecList =
+                application.jobSpecDayList =
                         JsonParser.getInstance().getJobSpecList(apiResult.getResultJson());
 
                 showProgress();
 
                 APICaller apiCaller = new APICaller(this, null);
-                APICall apiCall = new APICall(API.JOB_DAILY_COUNT+application.employeeID,
+                APICall apiCall = new APICall(API.JOB_GENERIC_COUNT+application.employeeID+"/"+ Const.DAY_FRQ,
                         APICall.APICallMethod.GET, this);
                 apiCall.setJsonSend(null);
                 apiCaller.execute(apiCall);
 
-            }else if(apiResult.getURL().equals(API.JOB_PENDING_SPECS+application.employeeID)){
+            }else if(apiResult.getURL().equals(API.JOB_GENERIC_COUNT+application.employeeID+"/"+ Const.DAY_FRQ)){
 
 
                 application.dayJobCount = JsonParser.getInstance().getJobCount(apiResult.getResultJson());
+
+//                /**/
+//                showProgress();
+//
+//                APICaller apiCaller = new APICaller(this, null);
+//                APICall apiCall = new APICall(API.JOB_GENERIC_COUNT+application.employeeID+"/"+ Const.DAY_FRQ,
+//                        APICall.APICallMethod.GET, this);
+//                apiCall.setJsonSend(null);
+//                apiCaller.execute(apiCall);
 
             }
 

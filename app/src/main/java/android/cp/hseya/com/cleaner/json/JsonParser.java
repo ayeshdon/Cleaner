@@ -2,6 +2,7 @@ package android.cp.hseya.com.cleaner.json;
 
 
 import android.cp.hseya.com.cleaner.bean.ActivityBean;
+import android.cp.hseya.com.cleaner.bean.JobDisplayBean;
 import android.cp.hseya.com.cleaner.bean.JobSpecBean;
 import android.cp.hseya.com.cleaner.bean.JsonStatusBean;
 import android.cp.hseya.com.cleaner.bean.LoginResponseBean;
@@ -33,13 +34,15 @@ public class JsonParser implements JsonTag {
 
 
 
-    public JSONObject getActivityInspection(String date,int actId,
+    public JSONObject getActivityInspection(String date,int actId,int specId,int freqId,
                                             float rating,String comment,String email)throws  Exception{
         try {
 
             JSONObject rootJson = new JSONObject();
 
             rootJson.put(DATE,date);
+            rootJson.put(SPECSID,specId);
+            rootJson.put(FREQUENCY,freqId);
             rootJson.put(ACTIVITY,actId);
             rootJson.put(RATING,rating);
             rootJson.put(COMMENT,comment);
@@ -58,18 +61,21 @@ public class JsonParser implements JsonTag {
     /**
      * get sub activity sent json data
      */
-    public JSONObject getSubActivityInspection(String date,int actId,int subActId,
+    public JSONObject getSubActivityInspection(String date,int actId,int subActId,int specId,int freqId,
                                                float rating,String comment,String email)throws  Exception{
         try {
 
             JSONObject rootJson = new JSONObject();
 
             rootJson.put(DATE,date);
+            rootJson.put(SPECSID,specId);
+            rootJson.put(FREQUENCY,freqId);
             rootJson.put(ACTIVITY,actId);
             rootJson.put(SUBACTIVITY,subActId);
             rootJson.put(RATING,rating);
             rootJson.put(COMMENT,comment);
             rootJson.put(EMAIL,email);
+
 
 
 
@@ -182,6 +188,30 @@ public class JsonParser implements JsonTag {
 
             bean.setSuccess(jsonObj.getBoolean(SUCCESS));
             bean.setMessage(jsonObj.optString(MESSAGE));
+
+            return bean;
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+
+    /**
+     * Get display finished activity data
+     * @param jsonObj
+     * @return
+     * @throws Exception
+     */
+    public JobDisplayBean getDisplayData(JSONObject jsonObj) throws Exception {
+        try {
+            JobDisplayBean bean = new JobDisplayBean();
+
+            JSONObject jsonObject = jsonObj.getJSONObject(INSPECTION);
+
+            bean.setComment(jsonObject.getString(COMMENT));
+            bean.setRating(jsonObject.getInt(RATING));
+
 
             return bean;
 
@@ -341,10 +371,12 @@ public class JsonParser implements JsonTag {
 
                         ActivityBean dataBean = new ActivityBean();
 
-                        dataBean.setId(childJson.getInt(ACTIVITY_ID));
-                        dataBean.setActivity(childJson.getString(ACTIVITY));
-                        dataBean.setEndDate(childJson.getString(END_DATE));
+                        dataBean.setId(childJson.getInt(ACTIVITYID));
+                        dataBean.setFlag(childJson.getInt(FLAG));
+                        dataBean.setActivity(childJson.getString(DESCRIPTION));
+                        dataBean.setEndDate(childJson.optString(END_DATE, "None"));
                         dataBean.setDoneName(childJson.optString(EMPLOYEE, "None"));
+
 
                         dataList.add(dataBean);
                     }
@@ -383,6 +415,7 @@ public class JsonParser implements JsonTag {
                         SubActivityBean dataBean = new SubActivityBean();
 
                         dataBean.setId(childJson.getInt(SUB_ACTIVITY_ID));
+                        dataBean.setFlag(childJson.getInt(FLAG));
                         dataBean.setDate(endDate);
                         dataBean.setDoneName(doneName);
                         dataBean.setDescription(childJson.getString(DESCRIPTION));

@@ -65,6 +65,6 @@
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="V 1.0"
+        android:text="@string/version"
         android:id="@+id/versionTextView" />
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.cp.hseya.com.cleaner.fragment.WeekFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 /**
  * Created by ayesh on 8/10/15.
@@ -21,9 +22,15 @@ public class InspectionFPAdapter extends android.support.v4.app.FragmentPagerAda
     @Override
     public Fragment getItem(int arg0) {
         Bundle data = new Bundle();
+
+
+
         switch(arg0){
 
             /** tab1 is selected */
+
+
+
             case 0:
                  Fragment fragment1 = new DayFragment();
                 return fragment1;

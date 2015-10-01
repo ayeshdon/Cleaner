@@ -17,7 +17,9 @@ public class MainApplication extends Application {
     public int weekJobCount  = 0;
     public int monthJobCount = 0;
 
-    public ArrayList<JobSpecBean> jobSpecList;
+    public ArrayList<JobSpecBean> jobSpecDayList;
+    public ArrayList<JobSpecBean> jobSpecWeekList;
+    public ArrayList<JobSpecBean> jobSpecMonthList;
 
 
 }

@@ -68,9 +68,7 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
             loginPwEditText    = (EditText) findViewById(R.id.loginPwEditText);
 
 
-            versionTextView = (TextView) findViewById(R.id.versionTextView);
-            String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            versionTextView.setText("V1.13");
+
 
 
 

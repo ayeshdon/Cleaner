@@ -6,6 +6,7 @@ import android.cp.hseya.com.cleaner.MainApplication;
 import android.cp.hseya.com.cleaner.activity.InspectionItemActivity;
 import android.cp.hseya.com.cleaner.adapter.InspectionItemListAdapter;
 import android.cp.hseya.com.cleaner.bean.JobSpecBean;
+import android.cp.hseya.com.cleaner.utils.Const;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -104,9 +105,9 @@ public class DayFragment extends Fragment implements View.OnClickListener, Adapt
 
         try {
 
-            if (application.jobSpecList != null){
+            if (application.jobSpecDayList != null){
 
-                listAdapter = new InspectionItemListAdapter(getActivity(),application.jobSpecList);
+                listAdapter = new InspectionItemListAdapter(getActivity(),application.jobSpecDayList);
                 jobSpecListView.setAdapter(listAdapter);
 
             }
@@ -121,7 +122,7 @@ public class DayFragment extends Fragment implements View.OnClickListener, Adapt
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-        JobSpecBean bean =  application.jobSpecList.get(pos);
+        JobSpecBean bean =  application.jobSpecDayList.get(pos);
 
         try {
             Intent callItems = new Intent(getActivity(), InspectionItemActivity.class);
@@ -129,7 +130,9 @@ public class DayFragment extends Fragment implements View.OnClickListener, Adapt
             callItems.putExtra("CLIENTNAME",bean.getClientName());
             callItems.putExtra("ADDRESS",bean.getLocationName());
             callItems.putExtra("LEVEL",bean.getLevelName());
+            callItems.putExtra("DAY_FLAG", Const.DAY_FRQ);
             startActivity(callItems);
+
 
 
 

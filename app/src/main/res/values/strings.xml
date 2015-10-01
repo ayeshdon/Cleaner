@@ -29,6 +29,7 @@
     <color name="bg_gray">#CCCCCC</color>
     <color name="gray">#ededed</color>
     <color name="text_light_gray">#666666</color>
+    <color name="text_black">#000000</color>
 
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#263238</color>
@@ -67,4 +68,5 @@
     <string name="tap_to_select">Tap to Select</string>
     <string name="reason">Reason</string>
     <string name="save">Save</string>
+    <string name="version">V 1.15</string>
 </resources>

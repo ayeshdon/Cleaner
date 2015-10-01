@@ -16,6 +16,12 @@ public class API {
     public static final String SUB_ACT                = PROTOCOL + "://" + API_HOST + "subactivities/";
     public static final String POSTPONEREASON         = PROTOCOL + "://" + API_HOST + "postponereasons";
     public static final String POSTPONE               = PROTOCOL + "://" + API_HOST + "postpone";
+    public static final String DISPLAY_ACTIVITY       = PROTOCOL + "://" + API_HOST + "displayActivityInspection/";
+    public static final String DISPLAY_SUB_ACTIVITY   = PROTOCOL + "://" + API_HOST + "displaySubActivityInspection/";
+    public static final String JOB_GENERIC_COUNT      = PROTOCOL + "://" + API_HOST + "jobcountGeneric/";
+
+
+
 
 
 }

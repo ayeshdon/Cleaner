@@ -6,6 +6,7 @@ package android.cp.hseya.com.cleaner.json;
 public interface JsonTag {
 
     String EMAIL          = "email";
+    String INSPECTION     = "inspection";
     String PASSWORD       = "password";
     String STATUS_CODE    = "status_code";
     String STATUS         = "status";
@@ -21,10 +22,14 @@ public interface JsonTag {
     String CLIENT_NAME    = "clientname";
     String LOCATION_NAME  = "locationname";
     String DATE           = "date";
+    String SPECSID        = "specid";
+    String FREQUENCY      = "frequency";
     String LEVEL_NAME     = "levelname";
     String SPECS          = "specs";
     String SPECS_ID       = "specID";
     String ACTIVITY_ID    = "activityID";
+    String ACTIVITYID     = "activityid";
+    String FLAG           = "flag";
     String SUB_ACTIVITY_ID    = "subactivityid";
     String ACTIVITY       = "activity";
     String END_DATE       = "enddate";
