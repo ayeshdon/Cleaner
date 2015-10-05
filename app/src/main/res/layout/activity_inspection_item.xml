@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="android.cp.hseya.com.cleaner.activity.InspectionItemActivity">
+
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/btn_singup_bg"
+        android:minHeight="?attr/actionBarSize">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/clientNameTextView"
+                android:paddingTop="10dp"
+                android:textSize="20sp"
+                android:background="@color/btn_singup_bg"/>
+
+            <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/levelNameTextView"
+                android:paddingBottom="10dp"
+                android:background="@color/btn_singup_bg"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ExpandableListView
+        android:id="@+id/lvExp"
+        android:padding="16dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:groupIndicator="@null"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"/>
+
+</LinearLayout>

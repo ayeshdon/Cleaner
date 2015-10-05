@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="android.cp.hseya.com.cleaner.activity.SubTaskActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/btn_singup_bg"
+        android:minHeight="?attr/actionBarSize">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/clientNameSubTextView"
+                android:paddingTop="10dp"
+                android:textSize="20sp"
+                android:background="@color/btn_singup_bg"/>
+
+            <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:id="@+id/levelNameSubTextView"
+                android:paddingBottom="5dp"
+                android:fontFamily="sans-serif-light"
+                android:background="@color/btn_singup_bg"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/white"
+                android:layout_marginRight="10dp"></LinearLayout>
+
+            <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:id="@+id/actNameSubTextView"
+                android:paddingBottom="10dp"
+                android:textSize="16sp"
+                android:background="@color/btn_singup_bg"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ExpandableListView
+        android:id="@+id/subLvExp"
+        android:padding="16dp"
+        android:layout_height="0dp"
+        android:groupIndicator="@null"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"/>
+
+</LinearLayout>

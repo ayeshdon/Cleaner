@@ -71,8 +71,6 @@ public class ActivityMain extends Activity implements View.OnClickListener, APIC
 
 
 
-
-
             loginButton = (Button) findViewById(R.id.loginButton);
 
             loginButton.setOnClickListener(this);

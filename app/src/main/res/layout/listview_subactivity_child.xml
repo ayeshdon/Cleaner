@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/childSubDataTextView"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:fontFamily="sans-serif-light"
+        android:paddingBottom="5dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:id="@+id/subActivityImageView"
+            android:src="@drawable/calendar" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/weekly_work"
+            android:gravity="center|left"
+            android:id="@+id/weekTextView" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:id="@+id/subcommentImageView"
+            android:src="@drawable/comment_icon" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
